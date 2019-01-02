@@ -112,7 +112,6 @@ GeneralResponse = _reflection.GeneratedProtocolMessageType('GeneralResponse', (_
 _sym_db.RegisterMessage(GeneralResponse)
 
 
-
 _ACCOUNTS = _descriptor.ServiceDescriptor(
   name='Accounts',
   full_name='accounts.Accounts',

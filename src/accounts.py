@@ -1,12 +1,27 @@
+from protoc import accounts_pb2
+import google.protobuf.service
 
+def NewAccountDone():
+    print("== DONE == NewAccount")
 
+def NewAccount():
+    # done = NewAccountDone
 
+    CallMethod(method_descriptor, rpc_controller, request, done)
 
-address_book = goLib.AddressBook()
+    # method = service.GetDescriptor().FindMethodByName("Foo")
 
-# Read the existing address book.
-f = open(sys.argv[1], "rb")
-address_book.ParseFromString(f.read())
-f.close()
+NewAccount()
+# def AccountFromKey():
 
-ListPeople(address_book)
+# def GetAllAccounts():
+
+# def MakeEncodingSafe():
+
+# def RecoverSafeEncoding():
+
+# def String():
+
+# def Bytes():
+
+# def ReadAccountFromMemory():
