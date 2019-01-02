@@ -9,21 +9,5 @@ int main() {
     float result = SumFloat(4.786, 9.127);
     printf("sum: %f\n", result);
     
-
-    char *dowland = NewPersonTestStructAsJSON(
-        "dowland",
-        66.5,
-        14
-    );
-
-    char *matt = NewPersonTestStructAsJSON(
-        "matt",
-        68.0,
-        15
-    );
-    // printf("matt: %s\n", matt);
-
-    printf("matt: %s\n\ndowland: %s\n\n", matt, dowland);
-
     return 0;
 }

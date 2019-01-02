@@ -65,13 +65,7 @@ extern "C" {
 #endif
 
 
-/* Return type for NewPersonTestStructAsJSON */
-struct NewPersonTestStructAsJSON_return {
-	GoString r0;
-	GoInterface r1;
-};
-
-extern struct NewPersonTestStructAsJSON_return NewPersonTestStructAsJSON(GoString p0, GoFloat64 p1, GoInt p2);
+extern GoString NewPersonTestStructAsJSON(GoString p0, GoFloat64 p1, GoInt p2);
 
 extern GoFloat64 SumFloat(GoFloat64 p0, GoFloat64 p1);
 

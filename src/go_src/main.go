@@ -19,9 +19,9 @@ type PersonTestStruct struct {
 }
 
 //export NewPersonTestStructAsJSON
-func NewPersonTestStructAsJSON(name string, height float64, age int) (string, error) {
+func NewPersonTestStructAsJSON(name string, height float64, age int) string {
 	if name == "" || height < 1 || age < 1 {
-		return "", ErrInvalidPerson
+		return ""
 	}
 	person := PersonTestStruct{
 		Name:   name,
@@ -30,9 +30,9 @@ func NewPersonTestStructAsJSON(name string, height float64, age int) (string, er
 	}
 	personJSON, err := json.MarshalIndent(&person, "", "  ")
 	if err != nil {
-		return "", err
+		return ""
 	}
-	return string(personJSON), nil
+	return string(personJSON)
 }
 
 //export SumFloat
