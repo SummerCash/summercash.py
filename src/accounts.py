@@ -1,5 +1,5 @@
-from protoc import accounts_pb2
-import google.protobuf.service
+from proto import accounts_pb2
+from service import Service
 
 def NewAccountDone():
     print("== DONE == NewAccount")
@@ -7,9 +7,10 @@ def NewAccountDone():
 def NewAccount():
     # done = NewAccountDone
 
-    CallMethod(method_descriptor, rpc_controller, request, done)
+    # service.CallMethod(method_descriptor, rpc_controller, request, done)
 
-    # method = service.GetDescriptor().FindMethodByName("Foo")
+    method = GetDescriptor()
+    print(method)
 
 NewAccount()
 # def AccountFromKey():
