@@ -2,28 +2,20 @@ import grpc
 
 from proto.grpc import common_pb2
 from proto.grpc import common_pb2_grpc
-
-def LoadCert():
-    with open("certs/xoreo2Cert.pem", "rb") as f:
-        return f.read()
-
-def LoadKey():
-    with open("certs/xoreo2Key.pem", "rb") as f:
-        return f.read()
+from credentials import credentials
 
 def run():
-    print(LoadCert())
-    print(LoadKey())
-    credentials = grpc.ssl_channel_credentials(
-        root_certificates=None,
-        private_key=LoadKey(),
-        certificate_chain=LoadCert()
+    # creds = grpc.ssl_channel_credentials(
+    #     root_certificates=None,
+    #     private_key=LoadKey(),
+    #     certificate_chain=LoadCert()
         
-    )
+    # )
+    # # credentials = grpc.ssl_channel_credentials(LoadCert(), LoadKey())
     
 
-    with grpc.secure_channel('https://localhost:8080', credentials, None) as channel:
-    # with grpc.insecure_channel('http://localhost:8080') as channel:
+    # with grpc.secure_channel(target="https://localhost:8080", credentials=credentials, options=None) as channel:
+    with grpc.insecure_channel('http://localhost:8080') as channel:
         
         stub = common_pb2_grpc.CommonStub(channel)
         
