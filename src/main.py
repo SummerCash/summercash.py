@@ -3,13 +3,32 @@ import grpc
 from proto.grpc import common_pb2
 from proto.grpc import common_pb2_grpc
 
+def LoadCert():
+    with open("certs/xoreo2Cert.pem", "rb") as f:
+        return f.read()
+
+def LoadKey():
+    with open("certs/xoreo2Key.pem", "rb") as f:
+        return f.read()
 
 def run():
-    with grpc.secure_channel('https://localhost:8080') as channel:
+    print(LoadCert())
+    print(LoadKey())
+    credentials = grpc.ssl_channel_credentials(
+        root_certificates=None,
+        private_key=LoadKey(),
+        certificate_chain=LoadCert()
+        
+    )
+    
+
+    with grpc.secure_channel('https://localhost:8080', credentials, None) as channel:
+    # with grpc.insecure_channel('http://localhost:8080') as channel:
+        
         stub = common_pb2_grpc.CommonStub(channel)
         
         response = stub.DecodeString(common_pb2.GeneralRequest(input=b'test', s='test'))
-    print("Greeter client received: " + response.message)
+    print("Client received: " + response.message)
 
 
 if __name__ == '__main__':
