@@ -1,1 +1,5 @@
 .vscode
+
+# Pycache
+src/proto/grpc/__pycache__
+src/__pycache__

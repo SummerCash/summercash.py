@@ -15,7 +15,7 @@ def run():
     
 
     # with grpc.secure_channel(target="https://localhost:8080", credentials=credentials, options=None) as channel:
-    with grpc.insecure_channel('http://localhost:8080') as channel:
+    with grpc.insecure_channel('https://localhost:8080') as channel:
         
         stub = common_pb2_grpc.CommonStub(channel)
         
