@@ -1,11 +1,11 @@
 import grpc
 
 def LoadCert():
-    with open("certs/new/xoreo99Cert.pem", "rb") as f:
+    with open("certs/new/termCert.pem", "rb") as f:
         return f.read()
 
 def LoadKey():
-    with open("certs/new/xoreo99Key.pem", "rb") as f:
+    with open("certs/new/termKey.pem", "rb") as f:
         return f.read()
 
 print(LoadCert())
