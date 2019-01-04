@@ -10,8 +10,8 @@ def LoadKey():
 
 print(LoadCert())
 print(LoadKey())
-credentials = grpc.ssl_channel_credentials(
 
+credentials = grpc.ssl_channel_credentials(
     private_key=LoadKey(),
     certificate_chain=LoadCert()
 )
