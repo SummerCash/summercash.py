@@ -1,14 +1,13 @@
 import grpc
 
-from proto.grpc import chainconfig_pb2
-from proto.grpc import chainconfig_pb2_grpc
+from proto.build import chainconfig_pb2, chainconfig_pb2_grpc
 
 class ChainConfig:
     def __init__(self, channel):
         self.channel = channel
         self.stub = chainconfig_pb2_grpc.ConfigStub(channel)
 
-    def NewChainConfig(self, genesisPath)
+    def NewChainConfig(self, genesisPath):
         response = self.stub.NewChainConfig(chainconfig_pb2.GeneralRequest(genesisPath=genesisPath))
         return response.message
 

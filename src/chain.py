@@ -1,14 +1,13 @@
 import grpc
 
-from proto.grpc import chain_pb2
-from proto.grpc import chain_pb2_grpc
+from proto.build import chain_pb2, chain_pb2_grpc
 
 class Chain:
     def __init__(self, channel):
         self.channel = channel
         self.stub = chain_pb2_grpc.ChainStub(channel)
 
-    def GetBalance(self, address)
+    def GetBalance(self, address):
         response = self.stub.GetBalance(chain_pb2.GeneralRequest(address=address))
         return response.message
 

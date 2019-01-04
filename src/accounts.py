@@ -1,14 +1,13 @@
 import grpc
 
-from proto.grpc import accounts_pb2
-from proto.grpc import accounts_pb2_grpc
+from proto.build import accounts_pb2, accounts_pb2_grpc
 
 class Accounts:
     def __init__(self, channel):
         self.channel = channel
         self.stub = accounts_pb2_grpc.AccountsStub(channel)
 
-    def NewAccount(self, address, privateKey)
+    def NewAccount(self, address, privateKey):
         response = self.stub.NewAccount(accounts_pb2.GeneralRequest(address=address, privateKey=privateKey))
         return response.message
 

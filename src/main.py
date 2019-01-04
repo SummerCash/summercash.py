@@ -1,19 +1,35 @@
 import grpc
+import os
 
-from proto.grpc import common_pb2
-from proto.grpc import common_pb2_grpc
-from credentials import credentials
+class API:
+    def __init__(self, rpcIP):
+        self.ip = rpcIP
+        self.cert = self.LoadCert("term")
+        self.key = self.LoadKey("term")
 
-def run():
-    credentials = grpc.ssl_channel_credentials() # Get credentials
+        self.credentials = grpc.ssl_channel_credentials(
+            private_key=self.key,
+            certificate_chain=self.cert
+        )
 
-    with grpc.secure_channel(target="localhost:8080", credentials=credentials, options=None) as channel: # Open https channel
-        stub = common_pb2_grpc.CommonStub(channel) # Get common.proto stub
+    def LoadCert(self, prefix):
+        with open(os.path.abspath("certs/new/" + prefix + "Cert.pem"), "rb") as f:
+            return f.read()
 
-        response = stub.DecodeString(common_pb2.GeneralRequest(input=b'test', s='test')) # Call
-    print("Client received: " + response.message) # Get response
+    def LoadKey(self, prefix):
+        with open(os.path.abspath("certs/new/" + prefix + "Key.pem"), "rb") as f:
+            return f.read()
+    
+    def GetChannel(self):
+        with grpc.secure_channel(target=self.ip, credentials=self.credentials, options=None) as channel:
+            self.channel = channel
 
 
-if __name__ == '__main__':
-    run()
-# python3 -m grpc_tools.protoc -I./proto/src --python_out=./proto/build --grpc_python_out=. ./proto/src/*
+if __name__ == "__main__":
+    API("localhost:8080")
+
+
+"""
+command to build proto files
+python3 -m grpc_tools.protoc -I./proto/src --python_out=./proto/build --grpc_python_out=. ./proto/src/*
+"""
