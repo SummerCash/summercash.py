@@ -1,4 +1,4 @@
-import grpc
+import grpc, sys
 
 from proto.build import accounts_pb2, accounts_pb2_grpc
 
@@ -6,7 +6,8 @@ class Accounts:
     def __init__(self, channel):
         self.channel = channel
         self.stub = accounts_pb2_grpc.AccountsStub(channel)
-
+    def Test(self):
+        print("test works")
     def NewAccount(self, address, privateKey):
         response = self.stub.NewAccount(accounts_pb2.GeneralRequest(address=address, privateKey=privateKey))
         return response.message
@@ -38,3 +39,10 @@ class Accounts:
     def ReadAccountFromMemory(self, address, privateKey):
         response = self.stub.ReadAccountFromMemory(accounts_pb2.GeneralRequest(address=address, privateKey=privateKey))
         return response.message
+
+def test():
+    accounts = Accounts(None)
+    
+if sys.argv[1] == "--test":
+    test()
+    
