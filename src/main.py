@@ -27,9 +27,3 @@ class API:
 
 if __name__ == "__main__":
     API("localhost:8080")
-
-
-"""
-command to build proto files
-python3 -m grpc_tools.protoc -I./proto/src --python_out=./proto/build --grpc_python_out=. ./proto/src/*
-"""
