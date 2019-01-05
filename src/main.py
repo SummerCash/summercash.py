@@ -35,7 +35,6 @@ class API:
 
     # GetChannel - get, store channel metadata
     def GetChannel(self):
-<<<<<<< HEAD
         channel = grpc.secure_channel(target=self.ip, credentials=self.credentials, options=None)
         # with grpc.secure_channel(target=self.ip, credentials=self.credentials, options=None) as channel:
         #     self.channel = channel
@@ -49,12 +48,10 @@ if __name__ == "__main__":
     _common = common.Common(api.channel)
     response = _common.Encode(b"test", "test")
     print(response)
-=======
-        with grpc.secure_channel(target=self.ip, credentials=self.credentials, options=None) as channel: # Init secure channelA
-            self.channel = channel # Set channel
+#         with grpc.secure_channel(target=self.ip, credentials=self.credentials, options=None) as channel: # Init secure channelA
+#             self.channel = channel # Set channel
 
 
-if __name__ == "__main__":
-    api = API("localhost:8080") # Init API instance
-    api.GetChannel() # Get API channel
->>>>>>> e55864c75dd499adb5e3e28118cbf0bb68c5bb9c
+# if __name__ == "__main__":
+#     api = API("localhost:8080") # Init API instance
+#     api.GetChannel() # Get API channel
