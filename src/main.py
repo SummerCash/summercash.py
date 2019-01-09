@@ -24,5 +24,3 @@ if __name__ == "__main__":
     myAccounts = accounts.Accounts(server)
     r = myAccounts.CallMethod("NewAccount", "", "")
     print(r)
-
-
