@@ -1,4 +1,5 @@
 import sys
+import accounts
 class Server:
     def __init__(self, ip, port):
         self.rawIP = ip
@@ -9,8 +10,6 @@ class Server:
             print("invalid port number")
             sys.exit(-1)
     
-
-
 if __name__ == "__main__":
     server = Server(
         ip="localhost",

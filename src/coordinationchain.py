@@ -1,24 +1,15 @@
-import grpc
+import requests
 
-from proto.build import coordinationchain_pb2, coordinationchain_pb2_grpc
+def GeneralRequest():
+    obj = { }
+    return obj
 
 class CoordinationChain:
-    def __init__(self, channel):
-        self.channel = channel
-        self.stub = coordinationchain_pb2_grpc.CoordinationChainStub(channel)
+    def __init__(self, server):
+        self.server = server
+        self.server.ip
+        self.stub = self.server.ip + "/twirp/coordinationChain.CoordinationChain/"
 
-    def SyncNetwork(self):
-        response = self.stub.SyncNetwork(coordinationchain_pb2.GeneralRequest())
-        return response.message
-
-    def GetPeers(self):
-        response = self.stub.GetPeers(coordinationchain_pb2.GeneralRequest())
-        return response.message
-
-    def Bytes(self):
-        response = self.stub.Bytes(coordinationchain_pb2.GeneralRequest())
-        return response.message
-
-    def String(self):
-        response = self.stub.String(coordinationchain_pb2.GeneralRequest())
+    def CallMethod(self, method):
+        response = requests.post(self.stub + method, data = GeneralRequest())
         return response.message
