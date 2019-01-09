@@ -1,0 +1,8 @@
+Error help:
+https://github.com/grpc/grpc/blob/master/doc/connectivity-semantics-and-api.md
+
+grpc python documentation:
+https://grpc.io/grpc/python/grpc.html
+
+use of `secure channel` (examples):
+https://www.programcreek.com/python/example/95418/grpc.secure_channel

@@ -1,8 +1,8 @@
 import grpc
 import os
-from grpc.beta import implementations
+# from grpc.beta import implementations
 
-
+# import common
 
 class API:
     # __init__ - initialize API instance
@@ -33,21 +33,31 @@ class API:
         with open(os.path.abspath("../certs/new/" + prefix + "Key.pem"), "rb") as f:
             return f.read()
 
-    # GetChannel - get, store channel metadata
-    def GetChannel(self):
-        channel = grpc.secure_channel(target=self.ip, credentials=self.credentials, options=None)
-        # with grpc.secure_channel(target=self.ip, credentials=self.credentials, options=None) as channel:
-        #     self.channel = channel
-        self.channel = implementations.Channel(channel)
+    # PrepChannel - prep, store channel metadata
+    def PrepChannel(self):
+        # channel = grpc.secure_channel(target=self.ip, credentials=self.credentials, options=None)
+        with grpc.secure_channel(target=self.ip, credentials=self.credentials, options=None) as channel:
+            # pass
+            self.channel = channel
+            from proto.build import common_pb2, common_pb2_grpc
+            stub = common_pb2_grpc.CommonStub(self.channel)
+
+            genReq = common_pb2.GeneralRequest(input=b"as", s="as")
+            response = stub.Encode(genReq)
+
+
+            # _common = common.Common(channel)
+            # response = _common.Encode(b"test", "test")
+            # print(response)
+        # self.channel = implementations.Channel(channel)
 
 
 if __name__ == "__main__":
     api = API("localhost:8080")
-    api.GetChannel()
-    import common
-    _common = common.Common(api.channel)
-    response = _common.Encode(b"test", "test")
-    print(response)
+    api.PrepChannel()
+    # import common
+    # _common = common.Common(api.channel)
+    # response = _common.Encode(b"test", "test")
 #         with grpc.secure_channel(target=self.ip, credentials=self.credentials, options=None) as channel: # Init secure channelA
 #             self.channel = channel # Set channel
 
