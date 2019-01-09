@@ -1,15 +1,3 @@
-message GeneralRequest {
-    uint32 nonce = 1; // Transaction nonce
-
-    string address = 2; // Transaction address
-
-    string address2 = 3; // Second address
-
-    double amount = 4; // Tx amount (actually a float64)
-
-    bytes payload = 5; // Tx payload
-}
-
 import requests
 
 def GeneralRequest(nonce, address, address2, amount, payload):
