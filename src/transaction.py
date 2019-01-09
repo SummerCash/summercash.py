@@ -3,7 +3,7 @@ import requests
 def GeneralRequest(nonce, address, address2, amount, payload):
     obj = {
         "nonce": nonce,
-        "address": address
+        "address": address,
         "address2": address2,
         "amount": amount,
         "payload": payload
