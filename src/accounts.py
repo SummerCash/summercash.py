@@ -1,48 +1,18 @@
-import grpc, sys
+import requests
 
-from proto.build import accounts_pb2, accounts_pb2_grpc
+def GeneralRequest(address, privateKey):
+    obj = {
+        "address": address,
+        "privateKey": privateKey
+    }
+    return obj
 
 class Accounts:
-    def __init__(self, channel):
-        self.channel = channel
-        self.stub = accounts_pb2_grpc.AccountsStub(channel)
-    def Test(self):
-        print("test works")
-    def NewAccount(self, address, privateKey):
-        response = self.stub.NewAccount(accounts_pb2.GeneralRequest(address=address, privateKey=privateKey))
-        return response.message
+    def __init__(self, server):
+        self.server = server
+        self.server.ip
+        self.stub = self.server.ip + "/twirp/accounts.Accounts/"
 
-    def AccountFromKey(self, address, privateKey):
-        response = self.stub.AccountFromKey(accounts_pb2.GeneralRequest(address=address, privateKey=privateKey))
+    def CallMethod(self, method, address, privateKey):
+        response = requests.post(self.stub + method, data = GeneralRequest(address, privateKey))
         return response.message
-
-    def GetAllAccounts(self, address, privateKey):
-        response = self.stub.GetAllAccounts(accounts_pb2.GeneralRequest(address=address, privateKey=privateKey))
-        return response.message
-
-    def MakeEncodingSafe(self, address, privateKey):
-        response = self.stub.MakeEncodingSafe(accounts_pb2.GeneralRequest(address=address, privateKey=privateKey))
-        return response.message
-
-    def RecoverSafeEncoding(self, address, privateKey):
-        response = self.stub.RecoverSafeEncoding(accounts_pb2.GeneralRequest(address=address, privateKey=privateKey))
-        return response.message
-        
-    def String(self, address, privateKey):
-        response = self.stub.String(accounts_pb2.GeneralRequest(address=address, privateKey=privateKey))
-        return response.message
-
-    def Bytes(self, address, privateKey):
-        response = self.stub.Bytes(accounts_pb2.GeneralRequest(address=address, privateKey=privateKey))
-        return response.message
-
-    def ReadAccountFromMemory(self, address, privateKey):
-        response = self.stub.ReadAccountFromMemory(accounts_pb2.GeneralRequest(address=address, privateKey=privateKey))
-        return response.message
-
-def test():
-    accounts = Accounts(None)
-    
-if sys.argv[1] == "--test":
-    test()
-    
