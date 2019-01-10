@@ -5,6 +5,9 @@ import src.common as common
 import src.coordinationchain as coordinationchain
 import src.crypto as crypto
 import src.transaction as transaction
+import src.main as main
+
+import argparse
 
 def TestAccounts():
     methods = [
@@ -17,6 +20,7 @@ def TestAccounts():
         "Bytes",
         "ReadAccountFromMemory"
     ]
+
     for method in methods:
         r = accounts.CallMethod(method, "", "")
         print(r)
@@ -30,6 +34,7 @@ def TestChain():
         "QueryTransaction",
         "GetNumTransactions"
     ]
+
     for method in methods:
         r = chain.CallMethod(method, "")
         print(r)
@@ -43,6 +48,7 @@ def TestChainConfig():
         "ReadChainConfigFromMemory",
         "GetTotalSupply"
     ]
+
     for method in methods:
         r = chainconfig.CallMethod(method, "")
         print(r)
@@ -54,6 +60,7 @@ def TestCommon():
         "Decode",
         "DecodeString"
     ]
+
     for method in methods:
         r = common.CallMethod(method, "", "")
         print(r)
@@ -65,6 +72,7 @@ def TestCoordinationChain():
         "Bytes",
         "String"
     ]
+
     for method in methods:
         r = coordinationchain.CallMethod(method)
         print(r)
@@ -78,6 +86,7 @@ def TestCrypto():
         "Sha3d",
         "Sha3dString"
     ]
+
     for method in methods:
         r = crypto.CallMethod(method, "", "")
         print(r)
@@ -92,10 +101,22 @@ def TestTransaction():
         "SignTransaction",
         "VerifyTransactionSignature"
     ]
+
     for method in methods:
         r = transaction.CallMethod(method, "", "", "", "", "")
         print(r)
 
+parser = argparse.ArgumentParser(description='start SummerCash.py tests') # Init parser
+
+parser.add_argument('--provider', metavar='provider', type=str) # Add provider IP argument
+args = parser.parse_args() # Parse arguments
+
+if args.provider != "": # Check provider flag set
+    main.SourceAPI(main.provider) # Set provider
+else:
+    main.SourceAPI("https://localhost:8080") # Set to default provider
+
+print(main.provider) # Log provider
 TestAccounts()
 TestChain()
 TestChainConfig()
