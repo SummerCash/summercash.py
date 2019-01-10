@@ -1,15 +1,9 @@
-import accounts
-import chain
-import chainconfig
-import common
-import coordinationchain
-import crypto
-import transaction
+import sys, test
 
 # SourceAPI - set API provider
 def SourceAPI(provider_url: str):
     global provider # Init provider buffer
-    
+
     provider = provider_url # Set API provider
 
 if __name__ == "__main__":
