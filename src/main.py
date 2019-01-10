@@ -8,12 +8,6 @@ def SourceAPI(provider_url: str):
     
     provider = provider_url # Set API provider
 
-# GetProvider - get provider reference
-def GetProvider():
-    global provider # Get provider
-
-    return provider # Return provider
-
 if __name__ == "__main__":
     SourceAPI("https://localhost:8080") # Source API
 
