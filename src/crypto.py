@@ -1,10 +1,13 @@
 import requests
+import json
+import common.common as common
 
 def GeneralRequest(_input, n):
     obj = {
         "input": _input,
         "n": n
     }
+    
     return obj
 
 class Crypto:
@@ -14,5 +17,6 @@ class Crypto:
         self.stub = self.server.ip + "/twirp/crypto.Crypto/"
 
     def CallMethod(self, method, _input, n):
-        response = requests.post(self.stub + method, data = GeneralRequest(_input, n))
-        return response.message
+        response = requests.post(self.stub + method, data = json.dumps(GeneralRequest(_input, n)),
+            headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
+        return response.json()['msg'] # Return response
