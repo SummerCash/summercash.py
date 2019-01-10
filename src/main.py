@@ -1,25 +1,23 @@
 import sys, test
 
-# if __name__ == "__main__":
-#     if sys.argv[1] == "--test":
-#         test.test()
-global provider # Init provider buffer
-
-class Server:
-    def __init__(self, ip):
-        self.ip = ip
-
 # SourceAPI - set API provider
-def SourceAPI(provider: str):
-    provider = Server(provider) # Set API provider
+def SourceAPI(provider_url: str):
+    global provider # Init provider buffer
+
+    provider = provider_url # Set API provider
 
 if __name__ == "__main__":
-    server = Server("https://localhost:8080")
+    SourceAPI("https://localhost:8080") # Source API
     
-    myAccounts = accounts.Accounts(server)
+    myAccounts = accounts.Accounts(provider)
     r = myAccounts.CallMethod("NewAccount", "", "")
     print(r)
 
-    myAccounts = accounts.Accounts(server)
+    myAccounts = accounts.Accounts(provider)
     r = myAccounts.CallMethod("GetAllAccounts", "", "")
     print(r)
+
+'''
+TODO:
+    - finish removing classes from everything
+'''

@@ -1,6 +1,7 @@
 import requests
 import json
 import common.common as common
+import main as main
 
 def GeneralRequest(address):
     obj = {
@@ -9,13 +10,7 @@ def GeneralRequest(address):
 
     return obj
 
-class Chain:
-    def __init__(self, server):
-        self.server = server
-        self.server.ip
-        self.stub = self.server.ip + "/twirp/chain.Chain/"
-
-    def CallMethod(self, method, address):
-        response = requests.post(self.stub + method, data = json.dumps(GeneralRequest(address)),
-            headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
-        return common.GetRequestResponse(response) # Return response
+def CallMethod(method, address):
+    response = requests.post(main.provider + "/twirp/chain.Chain/" + method, data = json.dumps(GeneralRequest(address)),
+        headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
+    return common.GetRequestResponse(response) # Return response
