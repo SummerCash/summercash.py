@@ -6,7 +6,7 @@ def GeneralRequest(genesisPath):
     obj = {
         "genesisPath": genesisPath
     }
-    
+
     return obj
 
 class ChainConfig:
@@ -18,4 +18,4 @@ class ChainConfig:
     def CallMethod(self, method, genesisPath):
         response = requests.post(self.stub + method, data = json.dumps(GeneralRequest(genesisPath)),
         headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
-        return response.json()['msg'] # Return response
+        return common.GetRequestResponse(response) # Return response

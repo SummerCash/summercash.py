@@ -7,7 +7,7 @@ def GeneralRequest(_input, n):
         "input": _input,
         "n": n
     }
-    
+
     return obj
 
 class Crypto:
@@ -19,4 +19,4 @@ class Crypto:
     def CallMethod(self, method, _input, n):
         response = requests.post(self.stub + method, data = json.dumps(GeneralRequest(_input, n)),
             headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
-        return response.json()['msg'] # Return response
+        return common.GetRequestResponse(response) # Return response

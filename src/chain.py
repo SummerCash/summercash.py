@@ -6,7 +6,7 @@ def GeneralRequest(address):
     obj = {
         "address": address
     }
-    
+
     return obj
 
 class Chain:
@@ -18,4 +18,4 @@ class Chain:
     def CallMethod(self, method, address):
         response = requests.post(self.stub + method, data = json.dumps(GeneralRequest(address)),
             headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
-        return response.json()['msg'] # Return response
+        return common.GetRequestResponse(response) # Return response

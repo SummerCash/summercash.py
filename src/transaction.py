@@ -10,7 +10,7 @@ def GeneralRequest(nonce, address, address2, amount, payload):
         "amount": amount,
         "payload": payload
     }
-    
+
     return obj
 
 class Transaction:
@@ -22,4 +22,4 @@ class Transaction:
     def CallMethod(self, method, nonce, address, address2, amount, payload):
         response = requests.post(self.stub + method, data = json.dumps(GeneralRequest(nonce, address, address2, amount, payload)),
             headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
-        return response.json()['msg'] # Return response
+        return common.GetRequestResponse(response) # Return response

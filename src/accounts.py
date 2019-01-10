@@ -19,4 +19,4 @@ class Accounts:
     def CallMethod(self, method, address, privateKey):
         response = requests.post(self.stub + method, data = json.dumps(GeneralRequest(address, privateKey)),
             headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
-        return response.json()['msg'] # Return response # Return response
+        return common.GetRequestResponse(response) # Return response # Return response
