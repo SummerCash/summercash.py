@@ -8,7 +8,6 @@ def SourceAPI(provider_url: str):
 
 if __name__ == "__main__":
     SourceAPI("https://localhost:8080") # Source API
-    
 
 '''
 TODO:

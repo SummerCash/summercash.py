@@ -1,6 +1,6 @@
 import requests, json
-import common.common as common
-import main as main
+import src.commonutil.common as common
+import src.main as main
 
 def GeneralRequest(nonce, address, address2, amount, payload):
     obj = {

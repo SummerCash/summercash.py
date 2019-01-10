@@ -1,10 +1,10 @@
-import accounts
-import chain
-import chainconfig
-import common
-import coordinationchain
-import crypto
-import transaction
+import src.accounts as accounts
+import src.chain as chain
+import src.chainconfig as chainconfig
+import src.common as common
+import src.coordinationchain as coordinationchain
+import src.crypto as crypto
+import src.transaction as transaction
 
 def TestAccounts():
     methods = [
@@ -98,7 +98,7 @@ def TestTransaction():
 
 TestAccounts()
 TestChain()
-TestChainconfig()
+TestChainConfig()
 TestCommon()
 TestCoordinationChain()
 TestCrypto()
