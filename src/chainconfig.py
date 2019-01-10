@@ -10,6 +10,6 @@ def GeneralRequest(genesisPath):
     return obj
 
 def CallMethod(method, genesisPath):
-    response = requests.post(main.provider + "/twirp/chainConfig.ChainConfig/" + method, data = json.dumps(GeneralRequest(genesisPath)),
+    response = requests.post(main.GetProvider() + "/twirp/chainConfig.ChainConfig/" + method, data = json.dumps(GeneralRequest(genesisPath)),
         headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
     return common.GetRequestResponse(response) # Return response

@@ -14,6 +14,6 @@ def GeneralRequest(nonce, address, address2, amount, payload):
     return obj
 
 def CallMethod(method, nonce, address, address2, amount, payload):
-    response = requests.post(main.provider + "/twirp/transaction.Transaction/" + method, data = json.dumps(GeneralRequest(nonce, address, address2, amount, payload)),
+    response = requests.post(main.GetProvider() + "/twirp/transaction.Transaction/" + method, data = json.dumps(GeneralRequest(nonce, address, address2, amount, payload)),
         headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
     return common.GetRequestResponse(response) # Return response

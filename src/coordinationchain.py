@@ -8,6 +8,6 @@ def GeneralRequest():
     return obj
 
 def CallMethod(method):
-    response = requests.post(main.provider + "/twirp/coordinationChain.CoordinationChain/" + method, data = json.dumps(GeneralRequest()),
+    response = requests.post(main.GetProvider() + "/twirp/coordinationChain.CoordinationChain/" + method, data = json.dumps(GeneralRequest()),
         headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
     return common.GetRequestResponse(response) # Return response

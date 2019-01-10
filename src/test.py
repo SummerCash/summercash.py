@@ -112,11 +112,11 @@ parser.add_argument('--provider', metavar='provider', type=str) # Add provider I
 args = parser.parse_args() # Parse arguments
 
 if args.provider != "": # Check provider flag set
-    main.SourceAPI(main.provider) # Set provider
+    main.SourceAPI(main.GetProvider()) # Set provider
 else:
     main.SourceAPI("https://localhost:8080") # Set to default provider
 
-print(main.provider) # Log provider
+print(main.GetProvider()) # Log provider
 TestAccounts()
 TestChain()
 TestChainConfig()
