@@ -11,7 +11,7 @@ class Server:
         self.ip = ip
     
 if __name__ == "__main__":
-    server = Server("localhost:8080")
+    server = Server("https://localhost:8080")
     
     myAccounts = accounts.Accounts(server)
     r = myAccounts.CallMethod("NewAccount", "", "")
@@ -21,6 +21,6 @@ if __name__ == "__main__":
     r = myChain.CallMethod("GetBalance", "an account address")
     print(r)
 
-    myAccounts = accounts.Accounts(server)
-    r = myAccounts.CallMethod("NewAccount", "", "")
+    # myAccounts = accounts.Accounts(server)
+    # r = myAccounts.CallMethod("NewAccount", "", "")
     print(r)

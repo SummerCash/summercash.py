@@ -17,5 +17,5 @@ class Transaction:
         self.stub = self.server.ip + "/twirp/transaction.Transaction/"
 
     def CallMethod(self, method, nonce, address, address2, amount, payload):
-        response = requests.post(self.stub + method, data = GeneralRequest(nonce, address, address2, amount, payload))
+        response = requests.get(self.stub + method, data = GeneralRequest(nonce, address, address2, amount, payload))
         return response.message
