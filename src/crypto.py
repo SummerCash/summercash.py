@@ -1,32 +1,16 @@
-import grpc
+import requests, json
+import common.common as common
+import main as main
 
-from proto.build import crypto_pb2, crypto_pb2_grpc
+def GeneralRequest(_input, n):
+    obj = {
+        "input": _input,
+        "n": n
+    }
 
-class Crypto:
-    def __init__(self, channel):
-        self.channel = channel
-        self.stub = crypto_pb2_grpc.CryptoStub(channel)
+    return obj
 
-    def Sha3(self, _input, n):
-        response = self.stub.Sha3(crypto_pb2.GeneralRequest(input=_input, n=n))
-        return response.message
-
-    def Sha3String(self, _input, n):
-        response = self.stub.Sha3String(crypto_pb2.GeneralRequest(input=_input, n=n))
-        return response.message
-
-    def Sha3n(self, _input, n):
-        response = self.stub.Sha3n(crypto_pb2.GeneralRequest(input=_input, n=n))
-        return response.message
-
-    def Sha3nString(self, _input, n):
-        response = self.stub.Sha3nString(crypto_pb2.GeneralRequest(input=_input, n=n))
-        return response.message
-
-    def Sha3d(self, _input, n):
-        response = self.stub.Sha3d(crypto_pb2.GeneralRequest(input=_input, n=n))
-        return response.message
-
-    def Sha3dString(self, _input, n):
-        response = self.stub.Sha3dString(crypto_pb2.GeneralRequest(input=_input, n=n))
-        return response.message
+def CallMethod(self, method, _input, n):
+    response = requests.post(main.provider + "/twirp/crypto.Crypto/" + method, data = json.dumps(GeneralRequest(_input, n)),
+        headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
+    return common.GetRequestResponse(response) # Return response

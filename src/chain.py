@@ -1,32 +1,15 @@
-import grpc
+import requests, json
+import common.common as common
+import main as main
 
-from proto.build import chain_pb2, chain_pb2_grpc
+def GeneralRequest(address):
+    obj = {
+        "address": address
+    }
 
-class Chain:
-    def __init__(self, channel):
-        self.channel = channel
-        self.stub = chain_pb2_grpc.ChainStub(channel)
+    return obj
 
-    def GetBalance(self, address):
-        response = self.stub.GetBalance(chain_pb2.GeneralRequest(address=address))
-        return response.message
-
-    def Bytes(self, address):
-        response = self.stub.Bytes(chain_pb2.GeneralRequest(address=address))
-        return response.message
-
-    def String(self, address):
-        response = self.stub.String(chain_pb2.GeneralRequest(address=address))
-        return response.message
-
-    def ReadChainFromMemory(self, address):
-        response = self.stub.ReadChainFromMemory(chain_pb2.GeneralRequest(address=address))
-        return response.message
-
-    def QueryTransaction(self, address):
-        response = self.stub.QueryTransaction(chain_pb2.GeneralRequest(address=address))
-        return response.message
-        
-    def GetNumTransactions(self, address):
-        response = self.stub.GetNumTransactions(chain_pb2.GeneralRequest(address=address))
-        return response.message
+def CallMethod(method, address):
+    response = requests.post(main.provider + "/twirp/chain.Chain/" + method, data = json.dumps(GeneralRequest(address)),
+        headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
+    return common.GetRequestResponse(response) # Return response

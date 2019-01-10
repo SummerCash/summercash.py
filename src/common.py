@@ -1,24 +1,16 @@
-import grpc
+import requests, json
+import common.common as common
+import main as main
 
-from proto.build import common_pb2, common_pb2_grpc
+def GeneralRequest(_input, s):
+    obj = {
+        "input": _input,
+        "s": s
+    }
 
-class Common:
-    def __init__(self, channel):
-        self.channel = channel
-        self.stub = common_pb2_grpc.CommonStub(channel)
+    return obj
 
-    def Encode(self, _input, s):
-        response = self.stub.Encode(common_pb2.GeneralRequest(input=_input, s=s))
-        return response.message
-
-    def EncodeString(self, _input, s):
-        response = self.stub.EncodeString(common_pb2.GeneralRequest(input=_input, s=s))
-        return response.message
-
-    def Decode(self, _input, s):
-        response = self.stub.Decode(common_pb2.GeneralRequest(input=_input, s=s))
-        return response.message
-
-    def DecodeString(self, _input, s):
-        response = self.stub.DecodeString(common_pb2.GeneralRequest(input=_input, s=s))
-        return response.message
+def CallMethod(self, method, _input, s):
+    response = requests.post(main.provider + "/twirp/common.Common/" + method, data = json.dumps(GeneralRequest(_input, s)),
+        headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
+    return common.GetRequestResponse(response) # Return response
