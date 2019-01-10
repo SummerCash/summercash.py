@@ -16,3 +16,8 @@ if __name__ == "__main__":
     myAccounts = accounts.Accounts(provider)
     r = myAccounts.CallMethod("GetAllAccounts", "", "")
     print(r)
+
+'''
+TODO:
+    - finish removing classes from everything
+'''
