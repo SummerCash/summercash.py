@@ -1,13 +1,29 @@
-import requests, json
+import requests
+import json
 import src.commonutil.common as common
 import src.main as main
 
-def GeneralRequest():
-    obj = { }
+
+def general_request():
+    """
+    Returns an empty array
+
+    :return: Empty array (obj)
+    """
+    obj = {}
 
     return obj
 
-def CallMethod(method):
-    response = requests.post(main.GetProvider() + "/twirp/coordinationChain.CoordinationChain/" + method, data = json.dumps(GeneralRequest()),
-        headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
-    return common.GetRequestResponse(response) # Return response
+
+def call_method(method):
+    """
+    Makes a request
+
+    :param method:
+    :return: Response
+    """
+    response = requests.post(main.get_provider() + "/twirp/coordinationChain.CoordinationChain/" + method,
+                             data=json.dumps(general_request()),
+                             headers=common.RequestHeaders,
+                             verify=common.RequestShouldVerify)  # Send request
+    return common.GetRequestResponse(response)

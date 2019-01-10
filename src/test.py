@@ -6,10 +6,10 @@ import src.coordinationchain as coordinationchain
 import src.crypto as crypto
 import src.transaction as transaction
 import src.main as main
-
 import argparse
 
-def TestAccounts():
+
+def test_accounts():
     methods = [
         "NewAccount",
         "AccountFromKey",
@@ -25,7 +25,8 @@ def TestAccounts():
         r = accounts.CallMethod(method, "", "")
         print(r)
 
-def TestChain():
+
+def test_chain():
     methods = [
         "GetBalance",
         "Bytes",
@@ -38,6 +39,7 @@ def TestChain():
     for method in methods:
         r = chain.CallMethod(method, "")
         print(r)
+
 
 def TestChainConfig():
     methods = [
@@ -53,7 +55,8 @@ def TestChainConfig():
         r = chainconfig.CallMethod(method, "")
         print(r)
 
-def TestCommon():
+
+def test_common():
     methods = [
         "Encode",
         "EncodeString",
@@ -62,10 +65,11 @@ def TestCommon():
     ]
 
     for method in methods:
-        r = common.CallMethod(method, "", "")
+        r = common.call_method(method, "", "")
         print(r)
 
-def TestCoordinationChain():
+
+def test_coordination_chain():
     methods = [
         "SyncNetwork",
         "GetPeers",
@@ -74,10 +78,11 @@ def TestCoordinationChain():
     ]
 
     for method in methods:
-        r = coordinationchain.CallMethod(method)
+        r = coordinationchain.call_method(method)
         print(r)
 
-def TestCrypto():
+
+def test_crypto():
     methods = [
         "Sha3",
         "Sha3String",
@@ -88,10 +93,11 @@ def TestCrypto():
     ]
 
     for method in methods:
-        r = crypto.CallMethod(method, "", "")
+        r = crypto.call_method(method, "", "")
         print(r)
 
-def TestTransaction():
+
+def test_transaction():
     methods = [
         "NewTransaction",
         "TransactionFromBytes",
@@ -103,24 +109,25 @@ def TestTransaction():
     ]
 
     for method in methods:
-        r = transaction.CallMethod(method, "", "", "", "", "")
+        r = transaction.call_method(method, "", "", "", "", "")
         print(r)
 
-parser = argparse.ArgumentParser(description='start SummerCash.py tests') # Init parser
 
-parser.add_argument('--provider', metavar='provider', type=str) # Add provider IP argument
-args = parser.parse_args() # Parse arguments
+parser = argparse.ArgumentParser(description='Start SummerCash.py tests')  # Init parser
 
-if args.provider != "": # Check provider flag set
-    main.SourceAPI(main.GetProvider()) # Set provider
+parser.add_argument('--provider', metavar='provider', type=str)  # Add provider IP argument
+args = parser.parse_args()  # Parse arguments
+
+if args.provider != "":  # Check provider flag set
+    main.source_api(main.get_provider())  # Set provider
 else:
-    main.SourceAPI("https://localhost:8080") # Set to default provider
+    main.source_api("https://localhost:8080")  # Set to default provider
 
-print(main.GetProvider()) # Log provider
-TestAccounts()
-TestChain()
+print(main.get_provider()) # Log provider
+test_accounts()
+test_chain()
 TestChainConfig()
-TestCommon()
-TestCoordinationChain()
-TestCrypto()
-TestTransaction()
+test_common()
+test_coordination_chain()
+test_crypto()
+test_transaction()
