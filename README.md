@@ -3,7 +3,7 @@ Python 3 go-summercash API wrapper.
 
 ## Notes On Running
 
-While running, make sure to run from the root summercash.py directory (not src) as a module.
+When running, make sure to run from the root summercash.py directory (not src) as a module.
 
 Example:
 
