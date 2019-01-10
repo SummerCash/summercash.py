@@ -1,19 +1,13 @@
-import requests
-import json
+import requests, json
 import common.common as common
+import main as main
 
 def GeneralRequest():
     obj = { }
 
     return obj
 
-class CoordinationChain:
-    def __init__(self, server):
-        self.server = server
-        self.server.ip
-        self.stub = self.server.ip + "/twirp/coordinationChain.CoordinationChain/"
-
-    def CallMethod(self, method):
-        response = requests.post(self.stub + method, data = json.dumps(GeneralRequest()),
-            headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
-        return common.GetRequestResponse(response) # Return response
+def CallMethod(self, method):
+    response = requests.post(main.provider + "/twirp/coordinationChain.CoordinationChain/" + method, data = json.dumps(GeneralRequest()),
+        headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
+    return common.GetRequestResponse(response) # Return response

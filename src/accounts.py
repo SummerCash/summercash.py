@@ -1,5 +1,4 @@
-import requests
-import json
+import requests, json
 import common.common as common
 import main as main
 

@@ -1,6 +1,6 @@
-import requests
-import json
+import requests, json
 import common.common as common
+import main as main
 
 def GeneralRequest(nonce, address, address2, amount, payload):
     obj = {
@@ -13,13 +13,7 @@ def GeneralRequest(nonce, address, address2, amount, payload):
 
     return obj
 
-class Transaction:
-    def __init__(self, server):
-        self.server = server
-        self.server.ip
-        self.stub = self.server.ip + "/twirp/transaction.Transaction/"
-
-    def CallMethod(self, method, nonce, address, address2, amount, payload):
-        response = requests.post(self.stub + method, data = json.dumps(GeneralRequest(nonce, address, address2, amount, payload)),
-            headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
-        return common.GetRequestResponse(response) # Return response
+def CallMethod(self, method, nonce, address, address2, amount, payload):
+    response = requests.post(main.provider + "/twirp/transaction.Transaction/" + method, data = json.dumps(GeneralRequest(nonce, address, address2, amount, payload)),
+        headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
+    return common.GetRequestResponse(response) # Return response

@@ -1,4 +1,3 @@
-from server import Server
 import accounts
 import chain
 import chainconfig
@@ -6,8 +5,6 @@ import common
 import coordinationchain
 import crypto
 import transaction
-
-server = Server("")
 
 def TestAccounts():
     methods = [
@@ -21,8 +18,7 @@ def TestAccounts():
         "ReadAccountFromMemory"
     ]
     for method in methods:
-        myAccounts = accounts.Accounts(server)
-        r = myAccounts.CallMethod(method, "", "")
+        r = accounts.CallMethod(method, "", "")
         print(r)
 
 def TestChain():
@@ -35,8 +31,7 @@ def TestChain():
         "GetNumTransactions"
     ]
     for method in methods:
-        myChain = chain.Chain(server)
-        r = myChain.CallMethod(method, "")
+        r = chain.CallMethod(method, "")
         print(r)
 
 def TestChainConfig():
@@ -49,8 +44,7 @@ def TestChainConfig():
         "GetTotalSupply"
     ]
     for method in methods:
-        myChainConfig = chainconfig.ChainConfig(server)
-        r = myChainConfig.CallMethod(method, "")
+        r = chainconfig.CallMethod(method, "")
         print(r)
 
 def TestCommon():
@@ -61,8 +55,7 @@ def TestCommon():
         "DecodeString"
     ]
     for method in methods:
-        myCommon = common.Common(server)
-        r = myCommon.CallMethod(method, "", "")
+        r = common.CallMethod(method, "", "")
         print(r)
 
 def TestCoordinationChain():
@@ -73,8 +66,7 @@ def TestCoordinationChain():
         "String"
     ]
     for method in methods:
-        myCoordinationChain = coordinationchain.CoordinationChain(server)
-        r = myCoordinationChain.CallMethod(method)
+        r = coordinationchain.CallMethod(method)
         print(r)
 
 def TestCrypto():
@@ -87,8 +79,7 @@ def TestCrypto():
         "Sha3dString"
     ]
     for method in methods:
-        myCrypto = crypto.Crypto(server)
-        r = myCrypto.CallMethod(method, "", "")
+        r = crypto.CallMethod(method, "", "")
         print(r)
 
 def TestTransaction():
@@ -102,8 +93,7 @@ def TestTransaction():
         "VerifyTransactionSignature"
     ]
     for method in methods:
-        myTransaction = transaction.Transaction(server)
-        r = myTransaction.CallMethod(method, "", "", "", "", "")
+        r = transaction.CallMethod(method, "", "", "", "", "")
         print(r)
 
 TestAccounts()
