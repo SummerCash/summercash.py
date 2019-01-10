@@ -10,7 +10,7 @@ def GeneralRequest(_input, n):
 
     return obj
 
-def CallMethod(self, method, _input, n):
+def CallMethod(method, _input, n):
     response = requests.post(main.provider + "/twirp/crypto.Crypto/" + method, data = json.dumps(GeneralRequest(_input, n)),
         headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
     return common.GetRequestResponse(response) # Return response
