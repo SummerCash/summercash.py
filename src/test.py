@@ -56,15 +56,15 @@ def TestChainConfig():
 
 def TestCommon():
     methods = [
-        "Encode",
-        "EncodeString",
-        "Decode",
-        "DecodeString"
+        {"method": "Encode", "input": "test", "s": ""},
+        {"method": "EncodeString", "input": "test", "s": ""},
+        {"method": "Decode", "input": "", "s": "0x74657374"},
+        {"method": "DecodeString", "input": "", "s": "0x74657374"},
     ]
 
     for method in methods:
-        r = common.CallMethod(method, "", "")
-        print(r)
+        r = common.CallMethod(method['method'], method['input'], method['s']) # Call method
+        print(r) # Log response
 
 def TestCoordinationChain():
     methods = [
