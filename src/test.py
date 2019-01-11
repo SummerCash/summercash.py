@@ -68,15 +68,15 @@ def TestCommon():
 
 def TestCoordinationChain():
     methods = [
-        "SyncNetwork",
-        "GetPeers",
-        "Bytes",
-        "String"
+        {"method": "SyncNetwork"},
+        {"method": "GetPeers"},
+        {"method": "Bytes"},
+        {"method": "String"},
     ]
 
     for method in methods:
-        r = coordinationchain.CallMethod(method)
-        print(r)
+        r = coordinationchain.CallMethod(method['method']) # Call method
+        print(r) # Log response
 
 def TestCrypto():
     methods = [
