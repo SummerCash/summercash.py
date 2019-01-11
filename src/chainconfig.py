@@ -26,8 +26,6 @@ def CallMethod(method, genesisPath):
     :param genesisPath:
     :return: response
     """
-    response = requests.post(main.GetProvider() + "/twirp/chainConfig.ChainConfig/" + method,
-                             data=json.dumps(GeneralRequest(genesisPath)),
-                             headers=common.RequestHeaders,
-                             verify=common.RequestShouldVerify)  # Send request
-    return common.GetRequestResponse(response)
+    response = requests.post(main.provider + "/twirp/chainConfig.ChainConfig/" + method, data = json.dumps(GeneralRequest(genesisPath)),
+        headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
+    return common.GetRequestResponse(response) # Return response

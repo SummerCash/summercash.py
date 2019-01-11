@@ -29,8 +29,6 @@ def CallMethod(method, _input, n):
     :param n:
     :return: Response
     """
-    response = requests.post(main.GetProvider() + "/twirp/crypto.Crypto/" + method,
-                             data=json.dumps(GeneralRequest(_input, n)),
-                             headers=common.RequestHeaders,
-                             verify=common.RequestShouldVerify)  # Send request
-    return common.GetRequestResponse(response)
+    response = requests.post(main.provider + "/twirp/crypto.Crypto/" + method, data = json.dumps(GeneralRequest(_input, n)),
+        headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
+    return common.GetRequestResponse(response) # Return response

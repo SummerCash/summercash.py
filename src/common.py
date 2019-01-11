@@ -29,8 +29,6 @@ def CallMethod(method, _input, s):
     :param s:
     :return: Response
     """
-    response = requests.post(main.GetProvider() + "/twirp/common.Common/" + method,
-                             data = json.dumps(GeneralRequest(_input, s)),
-                             headers=common.RequestHeaders,
-                             verify=common.RequestShouldVerify)  # Send request
-    return common.GetRequestResponse(response)  # Return response
+    response = requests.post(main.provider + "/twirp/common.Common/" + method, data = json.dumps(GeneralRequest(_input, s)),
+        headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
+    return common.GetRequestResponse(response) # Return response

@@ -22,8 +22,6 @@ def CallMethod(method):
     :param method:
     :return: Response
     """
-    response = requests.post(main.GetProvider() + "/twirp/coordinationChain.CoordinationChain/" + method,
-                             data=json.dumps(GeneralRequest()),
-                             headers=common.RequestHeaders,
-                             verify=common.RequestShouldVerify)  # Send request
-    return common.GetRequestResponse(response)
+    response = requests.post(main.provider + "/twirp/coordinationChain.CoordinationChain/" + method, data = json.dumps(GeneralRequest()),
+        headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
+    return common.GetRequestResponse(response) # Return response

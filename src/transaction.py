@@ -38,9 +38,6 @@ def CallMethod(method, nonce, address, address2, amount, payload):
     :param payload:
     :return: Response
     """
-    response = requests.post(main.GetProvider() + "/twirp/transaction.Transaction/" + method,
-                             data=json.dumps(
-                    GeneralRequests(nonce, address, address2, amount, payload)),
-                             headers=common.RequestHeaders,
-                             verify=common.RequestShouldVerify)  # Send request
-    return common.GetRequestResponse(response)
+    response = requests.post(main.provider + "/twirp/transaction.Transaction/" + method, data = json.dumps(GeneralRequest(nonce, address, address2, amount, payload)),
+        headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
+    return common.GetRequestResponse(response) # Return response

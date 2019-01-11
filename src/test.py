@@ -116,18 +116,21 @@ def TestTransaction():
         r = transaction.CallMethod(method, "", "", "", "", "")
         print(r)
 
+        
+# HandleArgs - handle initializing and getting test arguments
+def HandleArgs():
+    parser = argparse.ArgumentParser(description='start SummerCash.py tests') # Init parser
 
-parser = argparse.ArgumentParser(description='Start SummerCash.py tests')  # Init parser
+    parser.add_argument('--provider', metavar='provider', type=str) # Add provider IP argument
+    args = parser.parse_args() # Parse arguments
 
-parser.add_argument('--provider', metavar='provider', type=str)  # Add provider IP argument
-args = parser.parse_args()  # Parse arguments
+    if args.provider != "": # Check provider flag set
+        main.SourceAPI(args.provider) # Set provider
+    else:
+        main.SourceAPI("https://localhost:8080") # Set to default provider
 
-if args.provider != "":  # Check provider flag set
-    main.SourceAPI(main.GetProvider())  # Set provider
-else:
-    main.SourceAPI("https://localhost:8080")  # Set to default provider
+HandleArgs() # Handle init/get args
 
-print(main.GetProvider()) # Log provider
 TestAccounts()
 TestChain()
 TestChainConfig()
