@@ -42,17 +42,17 @@ def TestChain():
 
 def TestChainConfig():
     methods = [
-        "NewChainConfig",
-        "Bytes",
-        "String",
-        "WriteToMemory",
-        "ReadChainConfigFromMemory",
-        "GetTotalSupply"
+        {"method": "NewChainConfig", "genesisPath": "config/genesis.json"},
+        {"method": "Bytes", "genesisPath": ""},
+        {"method": "String", "genesisPath": ""},
+        {"method": "WriteToMemory", "genesisPath": ""},
+        {"method": "ReadChainConfigFromMemory", "genesisPath": ""},
+        {"method": "GetTotalSupply", "genesisPath": ""},
     ]
 
     for method in methods:
-        r = chainconfig.CallMethod(method, "")
-        print(r)
+        r = chainconfig.CallMethod(method['method'], method['genesisPath']) # Call method
+        print(r) # Log response
 
 def TestCommon():
     methods = [
