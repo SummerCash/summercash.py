@@ -13,32 +13,32 @@ import argparse
 def TestAccounts():
     methods = [
         {"method": "NewAccount", "address": "", "privateKey": ""},
-        {"method": "AccountFromKey", "address": "", "privateKey": "0x2d2d2d2d2d424547494e2050524956415445204b45592d2d2d2d2d0a4d494863416745424245494158364351337a6a6d715a7050732b71316c5771412b44307678636b3474685468797075345543536c75537850502b346b4a6c39750a4f6134624c6b324b795a696f523559314b784b4b43584250496b7a7a4f42393741626d67427759464b34454541434f6867596b4467595941424141324b7254420a2b6b762f4148504f4d325a55543847342b322b6a36426b66532b784832755878387a577a47467069585354772f527649706b467850376e4a646f6d796b5733610a66786145684b4134464c56385642766c6677484478444971523247676d63683957616439665959486d4e76674a4b68546b45506d5470465278696e6d52504c4e0a54705774725a57746c5645347a4e785371566878676966517979366b5264302f376e2f663753725850513d3d0a2d2d2d2d2d454e442050524956415445204b45592d2d2d2d2d0a"},
+        {"method": "AccountFromKey", "address": "", "privateKey": "0x2d2d2d2d2d424547494e2050524956415445204b45592d2d2d2d2d0a4d494863416745424245494163796255696f3642464835314c77674b78644d426b67306b424f6b526f71443833346b626f586158497864324a566f4b3270424e0a6c356e7043425357385164436143546662466450493238766f6c695655715277614b6567427759464b34454541434f6867596b44675959414241475a55456a540a52706c5a35512b6d372b796f54776f62326879612f2b566149744170657153504d66572b796739736247734c63474d486e6f31703532536345777648473834330a53542f55336e31506c48377a4f6651786e414365706b68344847384a4e48796b2b646558555742674e444c5a635135764a685a785635464437796448307673410a2b77694b2b565837642b585a4d562f6833304c5872506346774e374a4b4e6c4d2f625451362f395863513d3d0a2d2d2d2d2d454e442050524956415445204b45592d2d2d2d2d0a"},
         {"method": "GetAllAccounts", "address": "", "privateKey": ""},
-        {"method": "MakeEncodingSafe", "address": "0x0400362ab4c1fa4bff0073ce3366544fc1b8", "privateKey": ""},
-        {"method": "RecoverSafeEncoding", "address": "0x0400362ab4c1fa4bff0073ce3366544fc1b8", "privateKey": ""},
-        {"method": "String", "address": "0x0400362ab4c1fa4bff0073ce3366544fc1b8", "privateKey": ""},
-        {"method": "Bytes", "address": "0x0400362ab4c1fa4bff0073ce3366544fc1b8", "privateKey": ""},
-        {"method": "ReadAccountFromMemory", "address": "0x0400362ab4c1fa4bff0073ce3366544fc1b8", "privateKey": ""},
+        {"method": "MakeEncodingSafe", "address": "0x0401995048d3469959e50fa6efeca84f0a1b", "privateKey": ""},
+        {"method": "RecoverSafeEncoding", "address": "0x0401995048d3469959e50fa6efeca84f0a1b", "privateKey": ""},
+        {"method": "String", "address": "0x0401995048d3469959e50fa6efeca84f0a1b", "privateKey": ""},
+        {"method": "Bytes", "address": "0x0401995048d3469959e50fa6efeca84f0a1b", "privateKey": ""},
+        {"method": "ReadAccountFromMemory", "address": "0x0401995048d3469959e50fa6efeca84f0a1b", "privateKey": ""},
     ]
 
     for method in methods:
-        r = accounts.CallMethod(method['method'], method['address'], method['privateKey'])
-        print(r)
+        r = accounts.CallMethod(method['method'], method['address'], method['privateKey']) # Call method
+        print(r) # Log response
 
 def TestChain():
     methods = [
-        "GetBalance",
-        "Bytes",
-        "String",
-        "ReadChainFromMemory",
-        "QueryTransaction",
-        "GetNumTransactions"
+        {"method": "GetBalance", "address": "0x0401995048d3469959e50fa6efeca84f0a1b"},
+        {"method": "Bytes", "address": "0x0401995048d3469959e50fa6efeca84f0a1b"},
+        {"method": "String", "address": "0x0401995048d3469959e50fa6efeca84f0a1b"},
+        {"method": "ReadChainFromMemory", "address": "0x0401995048d3469959e50fa6efeca84f0a1b"},
+        {"method": "QueryTransaction", "address": "0x307894355fbc47b854498df993ab1869c25b0aaed313de0903e5cc225aea90f9"},
+        {"method": "GetNumTransactions", "address": "0x0401995048d3469959e50fa6efeca84f0a1b"},
     ]
 
     for method in methods:
-        r = chain.CallMethod(method, "")
-        print(r)
+        r = chain.CallMethod(method['method'], method['address']) # Call method
+        print(r) # Log response
 
 def TestChainConfig():
     methods = [
