@@ -80,32 +80,32 @@ def TestCoordinationChain():
 
 def TestCrypto():
     methods = [
-        "Sha3",
-        "Sha3String",
-        "Sha3n",
-        "Sha3nString",
-        "Sha3d",
-        "Sha3dString"
+        {"method": "Sha3", "input": "test", "n": 0},
+        {"method": "Sha3String", "input": "test", "n": 0},
+        {"method": "Sha3n", "input": "test", "n": 2},
+        {"method": "Sha3nString", "input": "test", "n": 2},
+        {"method": "Sha3d", "input": "test", "n": 0},
+        {"method": "Sha3dString", "input": "test", "n": 0},
     ]
 
     for method in methods:
-        r = crypto.CallMethod(method, "", "")
-        print(r)
+        r = crypto.CallMethod(method['method'], method['input'], method['n']) # Call method
+        print(r) # Log response
 
 def TestTransaction():
     methods = [
-        "NewTransaction",
-        "TransactionFromBytes",
-        "Publish",
-        "Bytes",
-        "String",
-        "SignTransaction",
-        "VerifyTransactionSignature"
+        {"method": "NewTransaction", "nonce": 0, "address": "0x0401995048d3469959e50fa6efeca84f0a1b", "address2": "0x0401995048d3469959e50fa6efeca84f0a1b", "amount": 0, "payload": "test"},
+        {"method": "TransactionFromBytes", "payload": "0x7b226e6f6e6365223a302c2273656e646572223a5b34382c3132302c342c312c3135332c38302c37322c3231312c37302c3135332c38392c3232392c31352c3136362c3233392c3233362c3136382c37392c31302c32375d2c22726563697069656e74223a5b34382c3132302c342c312c3135332c38302c37322c3231312c37302c3135332c38392c3232392c31352c3136362c3233392c3233362c3136382c37392c31302c32375d2c22616d6f756e74223a302c227061796c6f6164223a226447567a64413d3d222c227369676e6174757265223a6e756c6c2c2274696d65223a22323031392d30312d31315431383a31383a31322e3630363537333633375a222c2267656e65736973223a66616c73652c2268617368223a5b34382c3132302c36392c3232332c31392c38352c35302c39332c35302c3139352c3231342c38332c3231372c3138382c3138302c35382c3132322c3130352c362c3231312c3137362c3234372c3130322c36362c37382c3137392c3234312c3234352c3230362c31332c392c39365d7d0ast"},
+        {"method": "Publish", "address": "0x307845df1355325d32c3d653d9bcb43a7a6906d3b0f766424eb3f1f5ce0d0960"},
+        {"method": "Bytes", "address": "0x307845df1355325d32c3d653d9bcb43a7a6906d3b0f766424eb3f1f5ce0d0960"},
+        {"method": "String", "address": "0x307845df1355325d32c3d653d9bcb43a7a6906d3b0f766424eb3f1f5ce0d0960"},
+        {"method": "SignTransaction", "address": "0x307845df1355325d32c3d653d9bcb43a7a6906d3b0f766424eb3f1f5ce0d0960"},
+        {"method": "VerifyTransactionSignature", "address": "0x307845df1355325d32c3d653d9bcb43a7a6906d3b0f766424eb3f1f5ce0d0960"},
     ]
 
     for method in methods:
-        r = transaction.CallMethod(method, "", "", "", "", "")
-        print(r)
+        r = transaction.CallMethod(method['method'], method['nonce'], method['address'], method['address2'], method['amount'], method['payload']) # Call method
+        print(r) # Log response
 
 # HandleArgs - handle initializing and getting test arguments
 def HandleArgs():
