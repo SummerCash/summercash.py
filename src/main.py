@@ -1,7 +1,7 @@
 provider = ""  # Init provider buffer
 
 
-def source_api(provider_url: str):
+def SourceAPI(provider_url: str):
     """
     Set API provider
 
@@ -13,7 +13,7 @@ def source_api(provider_url: str):
     provider = provider_url  # Set API provider
 
 
-def get_provider():
+def GetProvider():
     """
     Get provider reference.
 
@@ -25,4 +25,4 @@ def get_provider():
 
 
 if __name__ == "__main__":
-    source_api("https://localhost:8080")  # Source API
+    SourceAPI("https://localhost:8080")  # Source API

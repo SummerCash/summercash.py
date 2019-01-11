@@ -4,7 +4,7 @@ import src.commonutil.common as common
 import src.main as main
 
 
-def general_request(_input, n):
+def GeneralRequest(_input, n):
     """
     Returns an array based on inputted parameters
 
@@ -20,7 +20,7 @@ def general_request(_input, n):
     return obj
 
 
-def call_method(method, _input, n):
+def CallMethod(method, _input, n):
     """
     Calls a method
 
@@ -29,8 +29,8 @@ def call_method(method, _input, n):
     :param n:
     :return: Response
     """
-    response = requests.post(main.get_provider() + "/twirp/crypto.Crypto/" + method,
-                             data=json.dumps(general_request(_input, n)),
+    response = requests.post(main.GetProvider() + "/twirp/crypto.Crypto/" + method,
+                             data=json.dumps(GeneralRequest(_input, n)),
                              headers=common.RequestHeaders,
                              verify=common.RequestShouldVerify)  # Send request
     return common.GetRequestResponse(response)

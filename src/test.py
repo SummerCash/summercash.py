@@ -9,7 +9,7 @@ import src.main as main
 import argparse
 
 
-def test_accounts():
+def TestAccounts():
     methods = [
         "NewAccount",
         "AccountFromKey",
@@ -26,7 +26,7 @@ def test_accounts():
         print(r)
 
 
-def test_chain():
+def TestChain():
     methods = [
         "GetBalance",
         "Bytes",
@@ -56,7 +56,11 @@ def TestChainConfig():
         print(r)
 
 
-def test_common():
+def TestCommon():
+    """
+    Prints the methods
+    :return: Nothing
+    """
     methods = [
         "Encode",
         "EncodeString",
@@ -65,11 +69,11 @@ def test_common():
     ]
 
     for method in methods:
-        r = common.call_method(method, "", "")
+        r = common.CallMethod(method, "", "")
         print(r)
 
 
-def test_coordination_chain():
+def TestCoordinationChain():
     methods = [
         "SyncNetwork",
         "GetPeers",
@@ -78,11 +82,11 @@ def test_coordination_chain():
     ]
 
     for method in methods:
-        r = coordinationchain.call_method(method)
+        r = coordinationchain.CallMethod(method)
         print(r)
 
 
-def test_crypto():
+def TestCrypto():
     methods = [
         "Sha3",
         "Sha3String",
@@ -93,11 +97,11 @@ def test_crypto():
     ]
 
     for method in methods:
-        r = crypto.call_method(method, "", "")
+        r = crypto.CallMethod(method, "", "")
         print(r)
 
 
-def test_transaction():
+def TestTransaction():
     methods = [
         "NewTransaction",
         "TransactionFromBytes",
@@ -109,7 +113,7 @@ def test_transaction():
     ]
 
     for method in methods:
-        r = transaction.call_method(method, "", "", "", "", "")
+        r = transaction.CallMethod(method, "", "", "", "", "")
         print(r)
 
 
@@ -119,15 +123,15 @@ parser.add_argument('--provider', metavar='provider', type=str)  # Add provider 
 args = parser.parse_args()  # Parse arguments
 
 if args.provider != "":  # Check provider flag set
-    main.source_api(main.get_provider())  # Set provider
+    main.SourceAPI(main.GetProvider())  # Set provider
 else:
-    main.source_api("https://localhost:8080")  # Set to default provider
+    main.SourceAPI("https://localhost:8080")  # Set to default provider
 
-print(main.get_provider()) # Log provider
-test_accounts()
-test_chain()
+print(main.GetProvider()) # Log provider
+TestAccounts()
+TestChain()
 TestChainConfig()
-test_common()
-test_coordination_chain()
-test_crypto()
-test_transaction()
+TestCommon()
+TestCoordinationChain()
+TestCrypto()
+TestTransaction()

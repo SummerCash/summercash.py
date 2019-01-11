@@ -10,7 +10,17 @@ def GeneralRequest(address, privateKey):
 
     return obj
 
+
 def CallMethod(method, address, privateKey):
-    response = requests.post(main.get_provider() + "/twirp/accounts.Accounts/" + method, data = json.dumps(GeneralRequest(address, privateKey)),
-                             headers=common.RequestHeaders, verify=common.RequestShouldVerify) # Send request
-    return common.GetRequestResponse(response) # Return response # Return response
+    """
+    Uses the requests library
+    :param method:
+    :param address:
+    :param privateKey:
+    :return:
+    """
+    response = requests.post(main.GetProvider() + "/twirp/accounts.Accounts/" + method,
+                             data=json.dumps(GeneralRequest(address, privateKey)),
+                             headers=common.RequestHeaders,
+                             verify=common.RequestShouldVerify)  # Send request
+    return common.GetRequestResponse(response)

@@ -4,7 +4,7 @@ import src.commonutil.common as common
 import src.main as main
 
 
-def general_request():
+def GeneralRequest():
     """
     Returns an empty array
 
@@ -15,15 +15,15 @@ def general_request():
     return obj
 
 
-def call_method(method):
+def CallMethod(method):
     """
     Makes a request
 
     :param method:
     :return: Response
     """
-    response = requests.post(main.get_provider() + "/twirp/coordinationChain.CoordinationChain/" + method,
-                             data=json.dumps(general_request()),
+    response = requests.post(main.GetProvider() + "/twirp/coordinationChain.CoordinationChain/" + method,
+                             data=json.dumps(GeneralRequest()),
                              headers=common.RequestHeaders,
                              verify=common.RequestShouldVerify)  # Send request
     return common.GetRequestResponse(response)

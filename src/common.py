@@ -4,7 +4,14 @@ import src.commonutil.common as common
 import src.main as main
 
 
-def general_request(_input, s):
+def GeneralRequest(_input, s):
+    """
+    Creates an object based on inputted parameters
+
+    :param _input:
+    :param s:
+    :return:
+    """
     obj = {
         "input": _input,
         "s": s
@@ -13,7 +20,7 @@ def general_request(_input, s):
     return obj
 
 
-def call_method(method, _input, s):
+def CallMethod(method, _input, s):
     """
     Makes a request
 
@@ -22,8 +29,8 @@ def call_method(method, _input, s):
     :param s:
     :return: Response
     """
-    response = requests.post(main.get_provider() + "/twirp/common.Common/" + method,
-                             data = json.dumps(general_request(_input, s)),
+    response = requests.post(main.GetProvider() + "/twirp/common.Common/" + method,
+                             data = json.dumps(GeneralRequest(_input, s)),
                              headers=common.RequestHeaders,
                              verify=common.RequestShouldVerify)  # Send request
     return common.GetRequestResponse(response)  # Return response
